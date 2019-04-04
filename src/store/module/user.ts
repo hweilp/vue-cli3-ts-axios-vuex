@@ -1,17 +1,17 @@
-import { UserInfoData } from '@/types/user.interface'
+import { UserInfoData } from '@/interface'
 import { GetterTree, MutationTree, ActionTree } from 'vuex'
 // import * as LoginApi from '@/api/login'
 
 // state
 const state: UserInfoData = {
-  UserName: 'nams',
+  token: 'token',
   userInfo: {}
 }
 
 // getter
 const getters: GetterTree<UserInfoData, any> = {
   UserInfo: (state: UserInfoData) => state.userInfo,
-  UserName: (state: UserInfoData) => state.UserName
+  token: (state: UserInfoData) => state.token
 }
 
 // mutations

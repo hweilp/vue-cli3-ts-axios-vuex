@@ -1,8 +1,7 @@
-import { AppInfo } from '@/types/app.interface'
+import { AppInfo } from '@/interface'
 import { GetterTree, MutationTree, ActionTree } from 'vuex'
 
 const state: AppInfo = {
-  menu: []
 }
 
 // 强制使用getter获取state

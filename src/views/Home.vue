@@ -1,8 +1,16 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png" @click="imgClick(2)">
-    <div>{{user.account + user.count || 0}}</div>
-    <button @click="doLogin">登录</button>
+    <div>{{user.username + count || 0}}</div>
+    <div>
+      <button @click="doLogin">登录</button>
+    </div>
+    <div>
+      <button @click="doLoginOut">退出</button>
+    </div>
+    <div>
+      <button @click="getUserStatus">获取用户状态数据</button>
+    </div>
   </div>
 </template>
 
@@ -11,6 +19,8 @@ import { Component, Vue } from 'vue-property-decorator'
 import { Getter, Action } from 'vuex-class'
 import { UserInfoData } from '@/interface'
 import user from '@/store/module/user'
+import { login, loginOut } from '@/api/login'
+import { userStatusEnum } from '@/api/user'
 @Component({
   components: {}
 })
@@ -38,8 +48,8 @@ export default class Home extends Vue {
   }
 
   mounted() {
-    console.log(this.user, this.token)
-    console.log('loginInfo=', this.loginInfo)
+    // console.log(this.user, this.token)
+    // console.log('loginInfo=', this.loginInfo)
   }
 
   // 初始化函数
@@ -48,16 +58,38 @@ export default class Home extends Vue {
   }
   doLogin() {
     this.count++
-    const data = {
-      count: this.count,
+    const formData = {
       account: 'ybl_admin',
       password: 'pass513',
       verificationCode: '2323',
       endSn: new Date().getTime()
     }
-    this.loginInfoChange(data)
-    // this.$store.dispatch('loginInfoChange', data)
-    console.log('loginInfo=', this.loginInfo)
+    login(formData)
+      .then(res => {
+        window.sessionStorage.token = res.data.token
+        this.loginInfoChange(res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+  doLoginOut() {
+    loginOut()
+      .then(res => {
+        window.sessionStorage.clear()
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
+  getUserStatus() {
+    userStatusEnum()
+      .then((res: any) => {
+        console.log(res)
+      })
+      .catch((err: any) => {
+        console.log(err)
+      })
   }
   imgClick(val: number) {
     console.log(val)

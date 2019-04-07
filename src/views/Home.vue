@@ -1,5 +1,10 @@
 <template>
   <div class="home">
+    <div id="nav">
+      <router-link to="/">Home</router-link>|
+      <router-link to="/about">About</router-link>|
+      <router-link to="/login">login</router-link>
+    </div>
     <img alt="Vue logo" src="../assets/logo.png" @click="imgClick(2)">
     <div>{{user.username + count || 0}}</div>
     <div>

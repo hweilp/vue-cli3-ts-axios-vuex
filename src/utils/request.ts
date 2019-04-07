@@ -5,7 +5,7 @@
  * @Author: hweilp
  * @LastEditors: hweilp
  * @Date: 2019-04-04 16:38:23
- * @LastEditTime: 2019-04-04 18:37:19
+ * @LastEditTime: 2019-04-07 10:27:00
  */
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 
@@ -54,7 +54,10 @@ class YBLRequest {
         this.destroy(url)
       }
       const { data, status } = response
-      if (status === 200) { return data } // 请求成功
+      if (status === 200 && data.code === 0) { return data }
+      if (status === 200 && data.code === 401) { requestFail(response) }
+
+      // if (status === 200) { return data } // 请求成功 
       return requestFail(response) // 失败回调
     }, (err: any) => {
       if (url) {
@@ -78,10 +81,10 @@ class YBLRequest {
 // 请求失败
 const requestFail = (res: AxiosResponse) => {
   let errStr = '网络繁忙！'
-  // token失效重新登录
-  if (res.data.code === 1000001) {
-    console.error('token失效重新登录')
-    return router.replace({ name: 'home' })
+  // 未登录
+  if (res.data.code === 401) {
+    console.error('未登录')
+    return router.replace({ name: 'LoginPage' })
   }
 
   return {

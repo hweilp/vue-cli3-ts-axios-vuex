@@ -1,5 +1,3 @@
-// method: 'get',
-// url: '/v1/reconcenter/common/enums/name2titlemaps/UserStatusEnum'
 
 import Http from "@/utils/request";
 

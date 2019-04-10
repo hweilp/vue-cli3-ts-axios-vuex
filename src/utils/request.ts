@@ -5,30 +5,11 @@
  * @Author: hweilp
  * @LastEditors: hweilp
  * @Date: 2019-04-04 16:38:23
- * @LastEditTime: 2019-04-10 11:57:34
+ * @LastEditTime: 2019-04-10 13:44:08
  */
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 
 import { getStorage } from '@/utils'
-// 获取node 命令参数
-// const Argv = process.argv
-
-// const ArgvMode = Argv[4] || 'dev'
-// let API_BASE_URL = ''
-// let OutPutDir = ''
-// if (ArgvMode === 'prod') {
-//   API_BASE_URL = process.env.VUE_APP_PROD_BASEURL
-//   OutPutDir = process.env.OUTPUTDIR_PROD
-// } else if (ArgvMode === 'test') {
-//   API_BASE_URL = process.env.VUE_APP_TEST_BASEURL
-//   OutPutDir = process.env.OUTPUTDIR_TEST
-// } else if (ArgvMode === 'sit') {
-//   API_BASE_URL = process.env.VUE_APP_SIT_BASEURL
-//   OutPutDir = process.env.OUTPUTDIR_SIT
-// } else {
-//   API_BASE_URL = process.env.VUE_APP_DEV_BASEURL
-//   OutPutDir = process.env.OUTPUTDIR_DEV
-// }
 
 const BaseURL: string = process.env.VUE_APP_BASEURL || location.origin
 const Token: string = getStorage('token')
@@ -92,7 +73,6 @@ class YBLRequest {
 
 // 请求失败
 const requestFail = (res: AxiosResponse) => {
-  console.log(res)
   let errStr = res.data.msg || '网络繁忙！'
   // 未登录
   return {

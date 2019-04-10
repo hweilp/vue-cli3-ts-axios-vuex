@@ -28,7 +28,7 @@ module.exports = {
   css: {
     modules: false, // 启用 CSS modules
     extract: true, // 是否使用css分离插件
-    sourceMap: false, // 开启 CSS source maps?
+    sourceMap: true, // 开启 CSS source maps?
     loaderOptions: {} // css预设器配置项
   },
   devServer: {

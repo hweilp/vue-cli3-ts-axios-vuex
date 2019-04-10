@@ -26,7 +26,7 @@ export default class LoginPage extends Vue {
       .then(res => {
         window.sessionStorage.token = res.data.token
         this.loginInfoChange(res.data)
-        window.location.href = '/'
+        this.$router.replace({ name: 'HomePage' })
       })
       .catch(err => {
         console.log(err)

@@ -1,5 +1,5 @@
 
-import Http from "@/utils/request";
+import Http from '@/utils/request'
 
 export const userStatusEnum = () => {
   //

@@ -4,7 +4,7 @@ import { GetterTree, MutationTree, ActionTree } from 'vuex'
 
 // state
 const state: UserInfoData = {
-  token: 'token',
+  token: '',
   userInfo: {}
 }
 
@@ -18,6 +18,7 @@ const getters: GetterTree<UserInfoData, any> = {
 const mutations: MutationTree<UserInfoData> = {
   UPDATE_LOGININFO_STATE(state: UserInfoData, data: UserInfoData) {
     state.userInfo = { ...data }
+    state.token = data.token || ''
     return state
   }
 }

@@ -18,7 +18,7 @@ export default class LoginPage extends Vue {
   doLogin() {
     const formData = {
       account: 'ybl_admin',
-      password: 'pass513',
+      password: 'Pass513',
       verificationCode: '2323',
       endSn: new Date().getTime()
     }
@@ -26,7 +26,7 @@ export default class LoginPage extends Vue {
       .then(res => {
         window.sessionStorage.token = res.data.token
         this.loginInfoChange(res.data)
-        this.$router.push({ name: 'HomePage' })
+        window.location.href = '/'
       })
       .catch(err => {
         console.log(err)

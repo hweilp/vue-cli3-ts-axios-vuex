@@ -4,5 +4,3 @@
     <button href="/" @click.prevent="$router.go(-1)">返回上一页</button>
   </div>
 </template>
-<script lang="ts">
-</script>

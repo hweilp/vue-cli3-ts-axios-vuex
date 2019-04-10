@@ -5,10 +5,20 @@
       <router-link to="/about">About</router-link>|
       <router-link to="/login">login</router-link>
     </div>
-    <img alt="Vue logo" src="../assets/logo.png" @click="imgClick(2)">
+    <div style="margin-bottom:20px;">
+      <el-button>element</el-button>
+    </div>
+    <el-select v-model="data.value" placeholder="请选择">
+      <el-option
+        v-for="item in data.options"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+      ></el-option>
+    </el-select>
     <div>{{user.username + count || 0}}</div>
     <div>
-      <button @click="doLogin">登录</button>
+      <!-- <button @click="doLogin">登录</button> -->
     </div>
     <div>
       <button @click="doLoginOut">退出</button>
@@ -37,7 +47,30 @@ export default class Home extends Vue {
   // data
   count: number = 0
   data = {
-    pageName: 'login'
+    pageName: 'login',
+    value: '',
+    options: [
+      {
+        value: '选项1',
+        label: '黄金糕'
+      },
+      {
+        value: '选项2',
+        label: '双皮奶'
+      },
+      {
+        value: '选项3',
+        label: '蚵仔煎'
+      },
+      {
+        value: '选项4',
+        label: '龙须面'
+      },
+      {
+        value: '选项5',
+        label: '北京烤鸭'
+      }
+    ]
   }
   // 计算属性
   get loginInfo(): any {
@@ -81,6 +114,7 @@ export default class Home extends Vue {
   doLoginOut() {
     loginOut()
       .then(res => {
+        this.$router.push({ name: 'LoginPage' })
         window.sessionStorage.clear()
       })
       .catch(err => {
@@ -104,5 +138,11 @@ export default class Home extends Vue {
 <style lang="less" scoped>
 .home {
   text-align: center;
+}
+#nav {
+  a {
+    color: rgb(23, 139, 255);
+    text-decoration: underline;
+  }
 }
 </style>

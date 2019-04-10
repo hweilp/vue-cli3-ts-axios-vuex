@@ -17,13 +17,14 @@ module.exports = {
   assetsDir: process.env.assetsDir || 'static', // 放置生成的静态资源路径，默认在outputDir
   indexPath: 'index.html', // 指定生成的 index.html 输入路径，默认outputDir
   pages: undefined, // 构建多页
-  productionSourceMap: true, // 开启 生产环境的 source map?
+  productionSourceMap: false, // 开启 生产环境的 source map?
+  runtimeCompiler: true, // 是否使用包含运行时编译器的 Vue 构建版本
   chainWebpack: config => {
     // 配置路径别名
     config.resolve.alias
       .set('@', resolve('src'))
-      .set('_c', resolve('src/components'))
   },
+
   css: {
     modules: false, // 启用 CSS modules
     extract: true, // 是否使用css分离插件
@@ -36,7 +37,9 @@ module.exports = {
       warnings: true,
       errors: true
     },
-    port: 8088, // 端口
+    open: true, // 配置自动启动浏览器
+    hotOnly: true, // 热更新
+    port: 8081, // 端口
     proxy: '' // 设置代理
   }
 }

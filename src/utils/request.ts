@@ -5,21 +5,33 @@
  * @Author: hweilp
  * @LastEditors: hweilp
  * @Date: 2019-04-04 16:38:23
- * @LastEditTime: 2019-04-07 10:27:00
+ * @LastEditTime: 2019-04-10 11:57:34
  */
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 
-import router from '@/router'
 import { getStorage } from '@/utils'
+// 获取node 命令参数
+// const Argv = process.argv
+
+// const ArgvMode = Argv[4] || 'dev'
+// let API_BASE_URL = ''
+// let OutPutDir = ''
+// if (ArgvMode === 'prod') {
+//   API_BASE_URL = process.env.VUE_APP_PROD_BASEURL
+//   OutPutDir = process.env.OUTPUTDIR_PROD
+// } else if (ArgvMode === 'test') {
+//   API_BASE_URL = process.env.VUE_APP_TEST_BASEURL
+//   OutPutDir = process.env.OUTPUTDIR_TEST
+// } else if (ArgvMode === 'sit') {
+//   API_BASE_URL = process.env.VUE_APP_SIT_BASEURL
+//   OutPutDir = process.env.OUTPUTDIR_SIT
+// } else {
+//   API_BASE_URL = process.env.VUE_APP_DEV_BASEURL
+//   OutPutDir = process.env.OUTPUTDIR_DEV
+// }
 
 const BaseURL: string = process.env.VUE_APP_BASEURL || location.origin
 const Token: string = getStorage('token')
-
-// 创建axios实例
-// const service = axios.create({
-//   baseURL: BaseURL,
-//   timeout: 5000
-// })
 
 class YBLRequest {
   public requsetList: any
@@ -80,13 +92,9 @@ class YBLRequest {
 
 // 请求失败
 const requestFail = (res: AxiosResponse) => {
-  let errStr = '网络繁忙！'
+  console.log(res)
+  let errStr = res.data.msg || '网络繁忙！'
   // 未登录
-  if (res.data.code === 401) {
-    console.error('未登录')
-    return router.replace({ name: 'LoginPage' })
-  }
-
   return {
     err: console.error({
       code: res.data.errcode || res.data.code,

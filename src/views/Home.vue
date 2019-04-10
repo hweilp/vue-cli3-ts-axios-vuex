@@ -1,13 +1,15 @@
 <template>
   <div class="home">
     <div id="nav">
-      <router-link to="/">Home</router-link>|
+      <router-link to="/">Homeg</router-link>|
       <router-link to="/about">About</router-link>|
       <router-link to="/login">login</router-link>
     </div>
     <div style="margin-bottom:20px;">
       <el-button>element</el-button>
     </div>
+    <HelloWordld msg="子组件" @addToCount="methodFromParent" @add-name="addNames"></HelloWordld>
+    <div>{{sonName}}</div>
     <el-select v-model="data.value" placeholder="请选择">
       <el-option
         v-for="item in data.options"
@@ -32,12 +34,15 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import { Getter, Action } from 'vuex-class'
+import HelloWordld from '@/components/HelloWorld.vue'
 import { UserInfoData } from '@/interface'
 import user from '@/store/module/user'
 import { login, loginOut } from '@/api/login'
-import { userStatusEnum } from '@/api/user'
+import { userStatusEnum, getPrivilegeRoles } from '@/api/user'
 @Component({
-  components: {}
+  components: {
+    HelloWordld
+  }
 })
 export default class Home extends Vue {
   // @Getter 拿取vuex中的state  @Action 获取vuex中的action
@@ -46,6 +51,7 @@ export default class Home extends Vue {
   @Action('loginInfoChange') public loginInfoChange: any
   // data
   count: number = 0
+  sonName: string = ''
   data = {
     pageName: 'login',
     value: '',
@@ -129,9 +135,25 @@ export default class Home extends Vue {
       .catch((err: any) => {
         console.log(err)
       })
+    getPrivilegeRoles()
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
   }
   imgClick(val: number) {
     console.log(val)
+  }
+
+  methodFromParent(val: number) {
+    console.log(`父组件= ${val}`)
+  }
+
+  addNames(val: string) {
+    console.log('fu=' + val)
+    this.sonName = val
   }
 }
 </script>

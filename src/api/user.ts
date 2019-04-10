@@ -8,3 +8,9 @@ export const userStatusEnum = () => {
     method: 'get'
   })
 }
+export const getPrivilegeRoles = () => {
+  return Http.request({
+    url: '/v1/servantmng/privilege/roles',
+    method: 'get'
+  })
+}

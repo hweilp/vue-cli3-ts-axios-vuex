@@ -1,0 +1,118 @@
+// @import "./variables.less";
+
+.verificationcodes {
+  cursor: pointer;
+}
+
+.loginPage {
+  /*background-color: #fff;*/
+  height: 100%;
+
+  .login-header {
+    height: 90px;
+    line-height: 90px;
+    padding-left: 52px;
+  }
+
+  .login-footer {
+    height: 90px;
+    text-align: center;
+    box-sizing: border-box;
+
+    div {
+      display: inline-block;
+      vertical-align: middle;
+      margin-top: 53px;
+    }
+
+    .line {
+      width: 94px;
+      border-top: 1px solid rgba(151, 151, 151, 1);
+    }
+
+    .text {
+      margin: 0 7px;
+      font-size: 12px;
+      margin-top: 53px;
+    }
+  }
+
+  .login-main {
+    height: calc(100% - 180px);
+    background: url('../assets/login_bg.png') center center no-repeat;
+    background-size: cover;
+    position: relative;
+
+    .el-form {
+      position: absolute;
+      right: 88px;
+      margin-top: -165px;
+      top: 50%;
+      width: 300px;
+      height: 330px;
+      padding: 32px 37px;
+      background: #fff;
+      box-sizing: border-box;
+
+      .login-title {
+        font-family: 'PingFangSC';
+        letter-spacing: 5px;
+        font-size: 18px;
+        font-weight: 700;
+        margin-bottom: 32px;
+        text-align: center;
+      }
+
+      .el-col-3 {
+        text-align: right;
+        padding-right: 3px;
+      }
+
+      .border-bt {
+        .el-input__inner {
+          border: 0;
+          border-bottom: 1px solid #dcdfe6;
+          padding: 0 10px;
+          border-radius: 0;
+        }
+      }
+
+      .verification {
+        .el-input__inner {
+          border: 0;
+          height: 30px;
+          line-height: 30px;
+          background: rgba(246, 246, 246, 1);
+          padding: 0 10px;
+        }
+      }
+
+      .imgContainer {
+        height: 30px;
+
+        img {
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      .el-form-item {
+        margin-bottom: 17px;
+      }
+
+      .el-button {
+        width: 100%;
+        background: #196ed5;
+      }
+
+      .svg-icon {
+        fill: #196ed5;
+      }
+    }
+  }
+
+  .el-form-item__error {
+    left: auto;
+    right: 0;
+  }
+}

@@ -10,8 +10,9 @@
     "prod": "vue-cli-service serve --mode prod",
     "build": "vue-cli-service build --mode prod",
     "build:dev": "vue-cli-service build --mode dev",
-    "build:test": "vue-cli-service build --mode tes",
+    "build:test": "vue-cli-service build --mode test",
     "build:sit": "vue-cli-service build --mode sit",
+    "build:prod": "vue-cli-service build --mode prod",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {

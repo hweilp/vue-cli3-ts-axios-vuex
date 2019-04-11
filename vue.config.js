@@ -1,19 +1,25 @@
-console.log('项目配置信息')
 const path = require('path')
 
 const resolve = dir => {
   return path.join(__dirname, dir)
 }
 
-// 线上打包路径，请根据项目实际线上情况
-const BASE_URL = process.env.NODE_ENV === 'production' ? './' : '/'
+// node 去掉前两位参数信息
+const rawArgv = process.argv.slice(2)
+// 开发 打包 注意 test:e2e 模式 走 build 模式
+const NODE_ENV = rawArgv[0] === 'build' ? 'production' : 'development'
+
+// 设置环境
+process.env.NODE_ENV = NODE_ENV
+
+console.log('项目配置信息')
 console.log(process.env.NODE_ENV)
-console.log(process.env.outputDir)
+console.log(process.env.VUE_APP_OUT_PUT_DIR)
 console.log('api = ' + process.env.VUE_APP_BASEURL)
 
 module.exports = {
-  publicPath: BASE_URL,
-  outputDir: 'build/' + process.env.outputDir || 'dist', // 打包生成的生产环境构建文件的目录
+  publicPath: process.env.NODE_ENV === 'production' ? './' : '/', // 线上打包路径，请根据项目实际线上情况
+  outputDir: 'build/' + process.env.VUE_APP_OUT_PUT_DIR || 'dist', // 打包生成的生产环境构建文件的目录
   assetsDir: process.env.assetsDir || 'static', // 放置生成的静态资源路径，默认在outputDir
   indexPath: 'index.html', // 指定生成的 index.html 输入路径，默认outputDir
   pages: undefined, // 构建多页

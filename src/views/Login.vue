@@ -1,7 +1,7 @@
 <template>
   <div class="loginPage">
     <div class="login-header">
-      <img src="@/assets/logo.png" alt>
+      <!-- <img src="@/assets/logo.png" alt> -->
     </div>
     <div class="login-main">
       <el-form :model="loginForm">
@@ -93,7 +93,8 @@ export default class Login extends Vue {
     }
     formData.endSn = this.time
     login(formData).then((data: any) => {
-      const Data = data.data
+      console.log(data)
+      const Data = data
       window.sessionStorage.userName = Data.username
       window.sessionStorage.userId = Data.userId
       window.sessionStorage.token = Data.token

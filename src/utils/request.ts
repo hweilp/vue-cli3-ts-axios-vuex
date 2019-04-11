@@ -5,10 +5,12 @@
  * @Author: hweilp
  * @LastEditors: hweilp
  * @Date: 2019-04-04 16:38:23
- * @LastEditTime: 2019-04-10 13:44:08
+ * @LastEditTime: 2019-04-11 16:45:59
  */
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
-
+import {
+  Message
+} from 'element-ui'
 import { getStorage } from '@/utils'
 
 const BaseURL: string = process.env.VUE_APP_BASEURL || location.origin
@@ -47,7 +49,7 @@ class YBLRequest {
         this.destroy(url)
       }
       const { data, status } = response
-      if (status === 200 && data.code === 0) { return data }
+      if (status === 200 && data.code === 0) { return data.data }
       if (status === 200 && data.code === 401) { requestFail(response) }
 
       // if (status === 200) { return data } // 请求成功 
@@ -74,13 +76,12 @@ class YBLRequest {
 // 请求失败
 const requestFail = (res: AxiosResponse) => {
   let errStr = res.data.msg || '网络繁忙！'
-  // 未登录
-  return {
-    err: console.error({
-      code: res.data.errcode || res.data.code,
-      msg: res.data.errmsg || errStr
-    })
-  }
+  Message.error(res.data.errmsg || errStr)
+  console.error({
+    code: res.data.errcode || res.data.code,
+    msg: res.data.errmsg || errStr
+  })
+  return (res.data)
 }
 const HTTP = new YBLRequest()
 export default HTTP

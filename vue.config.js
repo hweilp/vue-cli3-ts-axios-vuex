@@ -12,19 +12,24 @@ const NODE_ENV = rawArgv[0] === 'build' ? 'production' : 'development'
 // 设置环境
 process.env.NODE_ENV = NODE_ENV
 
+// is proproductionduct
+const IS_PROD = process.env.NODE_ENV === 'production'
+
+console.log(IS_PROD)
 console.log('项目配置信息')
 console.log(process.env.NODE_ENV)
 console.log(process.env.VUE_APP_OUT_PUT_DIR)
 console.log('api = ' + process.env.VUE_APP_BASEURL)
 
 module.exports = {
-  publicPath: process.env.NODE_ENV === 'production' ? './' : '/', // 线上打包路径，请根据项目实际线上情况
+  publicPath: IS_PROD ? './' : '/', // 线上打包路径，请根据项目实际线上情况
   outputDir: 'build/' + process.env.VUE_APP_OUT_PUT_DIR || 'dist', // 打包生成的生产环境构建文件的目录
   assetsDir: process.env.assetsDir || 'static', // 放置生成的静态资源路径，默认在outputDir
   indexPath: 'index.html', // 指定生成的 index.html 输入路径，默认outputDir
   pages: undefined, // 构建多页
-  productionSourceMap: false, // 开启 生产环境的 source map?
-  runtimeCompiler: true, // 是否使用包含运行时编译器的 Vue 构建版本
+  // lintOnSave: true, // 是否开启eslint保存检测，有效值：ture | false | 'error'
+  productionSourceMap: IS_PROD, // 开启 生产环境的 source map?
+  // runtimeCompiler: true, // 是否使用包含运行时编译器的 Vue 构建版本
   chainWebpack: config => {
     // 配置路径别名
     config.resolve.alias
@@ -33,8 +38,8 @@ module.exports = {
 
   css: {
     modules: false, // 启用 CSS modules
-    extract: true, // 是否使用css分离插件
-    sourceMap: true, // 开启 CSS source maps?
+    extract: IS_PROD, // 是否使用css分离插件
+    sourceMap: false, // 开启 CSS source maps?
     loaderOptions: {} // css预设器配置项
   },
   devServer: {

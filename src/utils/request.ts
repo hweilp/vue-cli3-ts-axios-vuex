@@ -3,7 +3,7 @@
  * @Author: hweilp
  * @LastEditors: hweilp
  * @Date: 2019-04-04 16:38:23
- * @LastEditTime: 2019-04-12 14:25:16
+ * @LastEditTime: 2019-04-12 16:13:10
  */
 import axios, { AxiosResponse, AxiosRequestConfig } from 'axios'
 import {
@@ -30,14 +30,18 @@ class Request {
   }
 
   requsetFail(response: AxiosResponse) {
-    let errStr = response.data.msg || '网络繁忙！'
-    Message.error(response.data.errmsg || errStr)
-    return Promise.reject(response.data.msg)
+    let errStr = '网络异常'
+    if (response.status === 200) {
+      errStr = response.data.msg
+      Message.error(errStr)
+    } else {
+      Message.error(errStr)
+    }
+    return Promise.reject(response)
   }
 
   // requset interceptors
   interceptors(instance: any, url?: string) {
-    // 拦截
     instance.
       interceptors.
       request.
@@ -52,18 +56,16 @@ class Request {
         return config
       })
 
-    // 响应
     instance.
       interceptors.
       response.
       use((response: AxiosResponse) => {
-        // 
         if (url) {
           this.destroy(url)
         }
         const { data, status } = response
         if (status === 200 && data.code === 0) {
-          return data.data
+          return data
         } else {
           return this.requsetFail(response)
         }
@@ -71,7 +73,7 @@ class Request {
         if (url) {
           this.destroy(url)
         }
-        return Promise.reject(err)
+        return this.requsetFail(err)
       })
   }
 
@@ -83,6 +85,13 @@ class Request {
     })
     await this.interceptors(instance, options.url)
     return instance(options)
+  }
+
+  async getRequset(params: any) {
+    const Data = await this.request(params).
+      then((res: any) => res).
+      catch((err: any) => err)
+    return Data
   }
 }
 

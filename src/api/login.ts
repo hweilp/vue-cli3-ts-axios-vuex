@@ -13,6 +13,5 @@ export const loginOut = () => {
   return Http.request({
     url: '/v1/servantmng/security/logout',
     method: 'get'
-
   })
 }

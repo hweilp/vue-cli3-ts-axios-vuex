@@ -19,3 +19,10 @@ export interface MenuItem {
 export interface Token {
   token: string
 }
+
+// http 请求类型
+export interface TypeHttpUrlMethods {
+  url: string,
+  method: string,
+  data?: any
+}

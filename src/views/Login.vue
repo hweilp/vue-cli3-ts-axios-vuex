@@ -93,8 +93,7 @@ export default class Login extends Vue {
     }
     formData.endSn = this.time
     login(formData).then((data: any) => {
-      console.log(data)
-      const Data = data
+      const Data = data.data
       window.sessionStorage.userName = Data.username
       window.sessionStorage.userId = Data.userId
       window.sessionStorage.token = Data.token

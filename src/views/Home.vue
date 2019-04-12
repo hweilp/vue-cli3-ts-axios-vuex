@@ -20,7 +20,7 @@
     </el-select>
     <div>{{user.username + count || 0}}</div>
     <div>
-      <!-- <button @click="doLogin">登录</button> -->
+      <el-button @click="editInfo">修改个人资料</el-button>
     </div>
     <div>
       <button @click="doLoginOut">退出</button>
@@ -38,7 +38,7 @@ import HelloWordld from '@/components/HelloWorld.vue'
 import { UserInfoData } from '@/interface'
 import user from '@/store/module/user'
 import { login, loginOut } from '@/api/login'
-import { userStatusEnum, getPrivilegeRoles } from '@/api/user'
+import { userStatusEnum, getPrivilegeRoles, EditPersonalInfo } from '@/api/user'
 @Component({
   components: {
     HelloWordld
@@ -91,11 +91,6 @@ export default class Home extends Vue {
     //
   }
 
-  mounted() {
-    // console.log(this.user, this.token)
-    // console.log('loginInfo=', this.loginInfo)
-  }
-
   // 初始化函数
   init() {
     //
@@ -127,22 +122,25 @@ export default class Home extends Vue {
         console.log(err)
       })
   }
-  getUserStatus() {
-    userStatusEnum()
-      .then((res: any) => {
-        console.log(res)
-      })
-      .catch((err: any) => {
-        console.log(err)
-      })
-    getPrivilegeRoles()
-      .then(res => {
-        console.log(res)
-      })
-      .catch(err => {
-        console.log(err)
-      })
+  async getUserStatus() {
+    const data = await userStatusEnum()
+    const prrvilegeRolesdata = await getPrivilegeRoles()
+    console.log(data, prrvilegeRolesdata)
   }
+  async editInfo() {
+    const params = {
+      id: 54,
+      email: '18902022322@163.com',
+      username: 'powerTest',
+      mobile: '18902022322',
+      realName: '权限测试'
+    }
+    let data = await EditPersonalInfo(params)
+    if (data.msg) {
+      this.$message.success(data.msg)
+    }
+  }
+
   imgClick(val: number) {
     console.log(val)
   }

@@ -15,11 +15,11 @@ process.env.NODE_ENV = NODE_ENV
 // is proproductionduct
 const IS_PROD = process.env.NODE_ENV === 'production'
 
-console.log(IS_PROD)
 console.log('项目配置信息')
-console.log(process.env.NODE_ENV)
-console.log(process.env.VUE_APP_OUT_PUT_DIR)
-console.log('api = ' + process.env.VUE_APP_BASEURL)
+console.log('NODE_ENV= ' + process.env.NODE_ENV)
+console.log('IS_PROD= ' + IS_PROD)
+console.log('OUT_PUT_DIR= ' + process.env.VUE_APP_OUT_PUT_DIR)
+console.log('api= ' + process.env.VUE_APP_BASEURL)
 
 module.exports = {
   publicPath: IS_PROD ? './' : '/', // 线上打包路径，请根据项目实际线上情况
@@ -38,7 +38,7 @@ module.exports = {
 
   css: {
     modules: false, // 启用 CSS modules
-    extract: IS_PROD, // 是否使用css分离插件
+    extract: IS_PROD, // 是否使用css分离插件 true style 和 文件的css less sass 文件不能自动更新
     sourceMap: false, // 开启 CSS source maps?
     loaderOptions: {} // css预设器配置项
   },

@@ -26,6 +26,13 @@
       <button @click="doLoginOut">退出</button>
     </div>
     <div>
+      <button @click="storeagCpr(1)">设置</button>
+      <button @click="storeagCpr(2)">清除key=token</button>
+      <button @click="storeagCpr(3)">清除all</button>
+      <button @click="storeagCpr(4)">get token</button>
+      <button @click="storeagCpr">保存多个</button>
+    </div>
+    <div>
       <button @click="getUserStatus">获取用户状态数据</button>
     </div>
   </div>
@@ -39,6 +46,7 @@ import { UserInfoData } from '@/interface'
 import user from '@/store/module/user'
 import { login, loginOut } from '@/api/login'
 import { userStatusEnum, getPrivilegeRoles, EditPersonalInfo } from '@/api/user'
+import Storage from '@/utils/storage'
 @Component({
   components: {
     HelloWordld
@@ -152,6 +160,26 @@ export default class Home extends Vue {
   addNames(val: string) {
     console.log('fu=' + val)
     this.sonName = val
+  }
+
+  storeagCpr(type: number) {
+    if (type === 1) {
+      Storage.setStorage('token', '232323232323')
+    } else if (type === 2) {
+      Storage.removeStorage('token')
+    } else if (type === 3) {
+      Storage.removeStorage('', true)
+    } else if (type === 4) {
+      let data = Storage.getStorage('token')
+      console.log(data)
+    } else {
+      Storage.setStorage('token2', '232323232323')
+      Storage.setStorage('user', {
+        userName: '杨超越',
+        age: 22,
+        sex: 'girls'
+      })
+    }
   }
 }
 </script>

@@ -25,7 +25,7 @@
     <div>
       <button @click="doLoginOut">退出</button>
     </div>
-    <div>
+    <div class="storage">
       <button @click="storeagCpr(1)">设置</button>
       <button @click="storeagCpr(2)">清除key=token</button>
       <button @click="storeagCpr(3)">清除all</button>
@@ -184,13 +184,5 @@ export default class Home extends Vue {
 }
 </script>
 <style lang="less" scoped>
-.home {
-  text-align: center;
-}
-#nav {
-  a {
-    color: rgb(23, 139, 255);
-    text-decoration: underline;
-  }
-}
+@import '../styles/home/home.less';
 </style>

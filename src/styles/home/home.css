@@ -1,0 +1,53 @@
+/*
+ * @Description: common css style with less
+ * @Version: 0.0.1
+ * @Company: YBL
+ * @Author: hweilp
+ * @LastEditors: hweilp
+ * @Date: 2019-04-16 10:44:30
+ * @LastEditTime: 2019-04-16 13:41:02
+ */
+.ybl-button {
+  border: 1px solid #dcdee2;
+  border-radius: 2px;
+  padding: 5px 8px;
+  cursor: pointer;
+  min-height: 30px;
+  line-height: 30px;
+  box-sizing: border-box;
+}
+.position_center {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+}
+.text_ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.home {
+  text-align: center;
+}
+#nav a {
+  color: #2d8cf0;
+  text-decoration: underline;
+}
+.storage {
+  width: auto;
+  height: auto;
+  margin: 20px auto;
+}
+.storage button {
+  border: 1px solid #dcdee2;
+  border-radius: 2px;
+  padding: 5px 8px;
+  cursor: pointer;
+  min-height: 30px;
+  line-height: 30px;
+  box-sizing: border-box;
+  margin: 5px;
+}

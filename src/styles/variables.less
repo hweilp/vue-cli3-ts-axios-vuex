@@ -1,0 +1,57 @@
+/*
+ * @Description: common css style with less
+ * @Version: 0.0.1
+ * @Company: YBL
+ * @Author: hweilp
+ * @LastEditors: hweilp
+ * @Date: 2019-04-16 10:44:30
+ * @LastEditTime: 2019-04-16 13:52:12
+ */
+@primary-color: rgba(45, 140, 240, 1);
+@primary-light-color: rgba(92, 173, 255, 1);
+@primary-dark-color: rgba(43, 133, 228, 1);
+
+@info-primary-color: rgba(45, 140, 240, 1);
+@warning-primary-color: rgba(255, 152, 2, 1);
+@success-primary-color: rgba(25, 190, 107, 1);
+@error-primary-color: rgba(237, 64, 21, 1);
+@fail-primary-color: rgba(197, 200, 206, 1);
+
+@font-primary-color: rgba(81, 90, 110, 1);
+@button-border-primary-color: rgba(220, 222, 226, 1);
+@button-font-primary-color: rgba(96, 98, 102, 1);
+@backgroud-primary-color: rgba(248, 248, 249, 1);
+
+.ybl-button {
+  border-radius: 3px;
+  padding: 0 8px;
+  cursor: pointer;
+  min-height: 28px;
+  line-height: 28px;
+  box-sizing: border-box;
+  outline: none;
+  transition: all .2s ease-in-out;
+  font-size: 14px;
+  color: @button-font-primary-color;
+  border: 1px solid @button-border-primary-color;
+
+  &:hover {
+    color: @primary-light-color;
+    border-color: rgb(87, 163, 243);
+  }
+}
+
+.position-center {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}

@@ -1,0 +1,39 @@
+/*
+ * @Description: common css style with less
+ * @Version: 0.0.1
+ * @Company: YBL
+ * @Author: hweilp
+ * @LastEditors: hweilp
+ * @Date: 2019-04-16 10:44:30
+ * @LastEditTime: 2019-04-16 13:52:12
+ */
+.ybl-button {
+  border-radius: 3px;
+  padding: 0 8px;
+  cursor: pointer;
+  min-height: 28px;
+  line-height: 28px;
+  box-sizing: border-box;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+  font-size: 14px;
+  color: #606266;
+  border: 1px solid #dcdee2;
+}
+.ybl-button:hover {
+  color: #5cadff;
+  border-color: #57a3f3;
+}
+.position-center {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  margin: auto;
+}
+.text-ellipsis {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
